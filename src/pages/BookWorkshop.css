@@ -1,0 +1,147 @@
+/* Book Workshop Page - Mobile First */
+
+.book-main {
+  min-height: 80vh;
+}
+
+.book-hero {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 100%);
+  padding: 44px 0 36px;
+  color: var(--white);
+}
+
+.book-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.book-subtitle {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.book-body {
+  padding: 40px 0 60px;
+}
+
+.book-form {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  box-shadow: var(--shadow);
+  max-width: 760px;
+}
+
+.form-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--saffron);
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.required {
+  color: var(--danger);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 11px 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: var(--font);
+  color: var(--text-dark);
+  background: var(--off-white);
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--saffron);
+  background: var(--white);
+}
+
+.input-error {
+  border-color: var(--danger) !important;
+}
+
+.error-msg {
+  font-size: 0.78rem;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+.success-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 52px 32px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  max-width: 520px;
+  margin: 60px auto;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.success-box h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.success-box p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+@media (min-width: 769px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .submit-btn {
+    width: auto;
+    padding: 14px 40px;
+  }
+}
