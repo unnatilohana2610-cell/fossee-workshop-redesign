@@ -24,6 +24,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
+## 🎥 Demo Video
+[Click here to watch project walkthrough](https://github.com/unnatilohana2610-cell/fossee-workshop-redesign/blob/main/FOSSEE-Project_Unnati_explanation.webm)
+
+
+---
 ## 📸 Before & After
 
 ### Before (Original FOSSEE Site)
