@@ -1,70 +1,177 @@
-# Getting Started with Create React App
+# FOSSEE Workshop Portal — UI/UX Redesign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete mobile-first redesign of the FOSSEE Workshop Booking portal using React.
+Original repository: [FOSSEE/workshop_booking](https://github.com/FOSSEE/workshop_booking)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Live Setup Instructions
 
-### `npm start`
+### Prerequisites
+- Node.js (v16 or above)
+- npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Steps to run locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/unnatilohana2610-cell/fossee-workshop-redesign.git
+cd fossee-workshop-redesign
+npm install
+npm start
+```
 
-### `npm test`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📸 Before & After
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Before (Original FOSSEE Site)
+![Before](src/screenshots/before-fossee-website.png.png)
+![Original Repo](src/screenshots/before-original.png.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### After (Redesigned)
+![Home Page](src/screenshots/after-home.png.png)
+![Workshops Page](src/screenshots/after-workshops.png.png)
+![Booking Page](src/screenshots/after-book.png.png)
+![Login Page](src/screenshots/after-login.png.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Mobile View
+![Mobile Home](src/screenshots/after-mobile.png.png)
+![Mobile Workshops](src/screenshots/after-mobile-workshops.png.png)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🎨 Design Principles
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Mobile-First Approach
+Since the primary users are students accessing the portal on mobile devices,
+I designed every component starting from the smallest screen size and
+scaled up to desktop. This meant single-column layouts on mobile that
+expand to grids on larger screens.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Visual Hierarchy
+I used size, color, and spacing deliberately to guide the user's eye.
+The hero section immediately communicates the purpose of the site.
+The saffron color draws attention to important actions like "Book Now"
+while the navy background creates a calm, professional feel.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 3. Accessibility First
+Every interactive element has proper ARIA labels, roles, and keyboard
+focus states. Form inputs have associated labels and error messages
+use role="alert" so screen readers can announce them. Color contrast
+ratios were kept high throughout.
 
-## Learn More
+### 4. Indian Identity
+I chose saffron and navy as the primary colors — they feel connected
+to IIT Bombay and India's educational identity while remaining
+professional and modern.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. Consistent Design Language
+I defined all colors, spacing, fonts and shadows as CSS variables in
+index.css so the entire site feels consistent and changes can be made
+in one place.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📱 Responsiveness
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I ensured responsiveness through:
 
-### Analyzing the Bundle Size
+- **Mobile-first CSS** — base styles target mobile, media queries add
+  desktop layouts
+- **CSS Grid with auto-fit** — workshop cards automatically reflow
+  from 1 column on mobile to 3 columns on desktop
+- **Flexible navigation** — hamburger menu on mobile, horizontal links
+  on desktop with smooth animated toggle
+- **Fluid typography** — font sizes and spacing adjust across breakpoints
+- **Testing** — tested on Chrome DevTools with iPhone 12 Pro, iPad,
+  and desktop viewport simulations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ⚖️ Trade-offs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Design vs Performance
+- I chose CSS variables and pure CSS animations over heavy animation
+  libraries to keep bundle size small
+- Used system fonts (Segoe UI, sans-serif) instead of Google Fonts
+  to avoid extra network requests
+- Kept images minimal and used emoji icons instead of icon libraries
+  where possible to reduce dependencies
+- Used react-icons selectively rather than importing entire icon sets
 
-### Advanced Configuration
+### Completeness vs Time
+- The statistics page from the original site was not redesigned as it
+  required complex chart libraries which would have increased load time
+  significantly
+- Used static workshop data instead of API calls to keep the frontend
+  focused on UI/UX demonstration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 💪 Most Challenging Part
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The most challenging part was designing the booking form to work well
+on mobile. Forms on small screens can feel cramped and overwhelming.
 
-### `npm run build` fails to minify
+My approach:
+- Broke the form into clearly labelled sections (Personal Details,
+  Workshop Preferences)
+- Used full-width inputs on mobile that shift to 2-column grid on desktop
+- Added real-time validation that clears errors as the user types,
+  reducing frustration
+- Designed a success screen that confirms the user's specific details
+  back to them so they feel confident their booking was received
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 🛠️ Tech Stack
+
+- React (JavaScript)
+- React Router DOM — client side navigation
+- CSS Variables — consistent theming
+- Semantic HTML5 — accessibility and SEO
+- Git — version control with progressive commits
+
+---
+
+## 📁 Project Structure
+## 📁 Project Structure
+
+    src/
+    ├── components/
+    │   ├── Navbar.js
+    │   ├── Navbar.css
+    │   ├── Footer.js
+    │   └── Footer.css
+    ├── pages/
+    │   ├── Home.js
+    │   ├── Home.css
+    │   ├── WorkshopList.js
+    │   ├── WorkshopList.css
+    │   ├── BookWorkshop.js
+    │   ├── BookWorkshop.css
+    │   ├── Login.js
+    │   └── Login.css
+    ├── screenshots/
+    ├── App.js
+    ├── index.js
+    └── index.css
+
+    ---
+
+## ✅ Submission Checklist
+
+- [x] Code is readable and well-structured
+- [x] Git history shows progressive commits
+- [x] README includes reasoning and setup instructions
+- [x] Screenshots included
+- [x] Code is documented where necessary
+- [x] Mobile-first responsive design
+- [x] Accessibility with ARIA labels
+- [x] SEO meta tags in index.html
+
+---
+
+*Redesigned by Unnati Lohana as part of FOSSEE Python Internship Screening Task.*
