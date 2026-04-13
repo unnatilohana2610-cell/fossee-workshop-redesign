@@ -20,7 +20,7 @@ function Footer() {
 
         <div className="footer-links-group">
           <h3 className="footer-heading">Quick Links</h3>
-          <ul className="footer-links" role="list">
+          <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/workshops">All Workshops</Link></li>
             <li><Link to="/book">Book a Workshop</Link></li>
@@ -30,7 +30,7 @@ function Footer() {
 
         <div className="footer-links-group">
           <h3 className="footer-heading">Resources</h3>
-          <ul className="footer-links" role="list">
+          <ul className="footer-links">
             <li>
               <a href="https://fossee.in" target="_blank" rel="noreferrer">
                 FOSSEE Website
@@ -51,7 +51,7 @@ function Footer() {
 
         <div className="footer-links-group">
           <h3 className="footer-heading">Contact</h3>
-          <ul className="footer-links" role="list">
+          <ul className="footer-links">
             <li>📧 contact@fossee.in</li>
             <li>📍 IIT Bombay, Mumbai</li>
             <li>🕐 Mon–Fri, 9am–5pm</li>
