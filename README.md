@@ -142,7 +142,6 @@ My approach:
 ---
 
 ## 📁 Project Structure
-## 📁 Project Structure
 
     src/
     ├── components/
