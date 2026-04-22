@@ -1,6 +1,12 @@
+// BookWorkshop.js - Workshop booking form with validation
+// Features: Real-time validation, error clearing on input, success screen
+// Form sections: Personal Details and Workshop Preferences
+// Accessible: ARIA labels, error announcements, semantic HTML
+
 import React, { useState } from 'react';
 import './BookWorkshop.css';
 
+// Available workshops for dropdown selection
 const workshopOptions = [
   'Python for Beginners',
   'Scilab Fundamentals',
@@ -11,6 +17,7 @@ const workshopOptions = [
 ];
 
 function BookWorkshop() {
+  // Stores all form field values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,9 +29,14 @@ function BookWorkshop() {
     message: ''
   });
 
+  // Controls success screen visibility after form submission
   const [submitted, setSubmitted] = useState(false);
+
+  // Stores validation error messages per field
   const [errors, setErrors] = useState({});
 
+  // Validates all required fields before submission
+  // Returns object with field names as keys and error messages as values
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Full name is required';
@@ -39,14 +51,19 @@ function BookWorkshop() {
     return newErrors;
   };
 
+  // Updates form state on input change
+  // Also clears error for that field as user starts typing
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error for this field when user starts correcting it
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
+  // Handles form submission
+  // Shows errors if validation fails, shows success screen if valid
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -54,13 +71,16 @@ function BookWorkshop() {
       setErrors(validationErrors);
       return;
     }
+    // Show personalized success screen
     setSubmitted(true);
   };
 
+  // Success screen shown after successful form submission
   if (submitted) {
     return (
       <main className="book-main">
         <div className="container">
+          {/* Success message with user's name and workshop for personalization */}
           <div className="success-box" role="alert" aria-live="polite">
             <div className="success-icon">🎉</div>
             <h2>Booking Request Sent!</h2>
@@ -69,6 +89,7 @@ function BookWorkshop() {
               <strong> {formData.workshop}</strong> has been received.
               You will get a confirmation on <strong>{formData.email}</strong> shortly.
             </p>
+            {/* Reset form to allow another booking */}
             <button
               className="btn-primary"
               onClick={() => {
@@ -89,6 +110,8 @@ function BookWorkshop() {
 
   return (
     <main className="book-main" id="main-content">
+
+      {/* Page header */}
       <section className="book-hero" aria-label="Booking header">
         <div className="container">
           <h1 className="book-title">Book a Workshop</h1>
@@ -100,14 +123,17 @@ function BookWorkshop() {
 
       <section className="book-body">
         <div className="container">
+          {/* Main booking form - noValidate disables browser default validation */}
           <form
             className="book-form"
             onSubmit={handleSubmit}
             noValidate
             aria-label="Workshop booking form"
           >
+            {/* Section label for Personal Details */}
             <div className="form-section-label">Personal Details</div>
 
+            {/* Two column layout on desktop, single column on mobile */}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">Full Name <span className="required">*</span></label>
@@ -121,6 +147,7 @@ function BookWorkshop() {
                   className={errors.name ? 'input-error' : ''}
                   aria-describedby={errors.name ? 'name-error' : undefined}
                 />
+                {/* Error message with role alert for screen readers */}
                 {errors.name && <span className="error-msg" id="name-error" role="alert">{errors.name}</span>}
               </div>
 
@@ -187,11 +214,13 @@ function BookWorkshop() {
               {errors.college && <span className="error-msg" id="college-error" role="alert">{errors.college}</span>}
             </div>
 
+            {/* Section label for Workshop Preferences */}
             <div className="form-section-label" style={{ marginTop: '28px' }}>Workshop Preferences</div>
 
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="workshop">Select Workshop <span className="required">*</span></label>
+                {/* Dropdown populated from workshopOptions array */}
                 <select
                   id="workshop"
                   name="workshop"
@@ -227,6 +256,7 @@ function BookWorkshop() {
               </div>
             </div>
 
+            {/* Optional message field - no validation required */}
             <div className="form-group">
               <label htmlFor="message">Additional Message (Optional)</label>
               <textarea
@@ -239,6 +269,7 @@ function BookWorkshop() {
               />
             </div>
 
+            {/* Submit button - triggers validation on click */}
             <button type="submit" className="btn-primary submit-btn">
               Submit Booking Request
             </button>

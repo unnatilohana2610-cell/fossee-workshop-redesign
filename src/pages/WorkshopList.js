@@ -1,7 +1,12 @@
+// WorkshopList.js - Displays all available workshops with search and filter
+// Features: Live search by name/location, category filter buttons
+// Responsive grid - 1 column mobile, 2 columns tablet, 3 columns desktop
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './WorkshopList.css';
 
+// Static workshop data - in production this would come from an API
 const allWorkshops = [
   {
     id: 1,
@@ -71,12 +76,17 @@ const allWorkshops = [
   }
 ];
 
+// Available filter categories including All option
 const categories = ['All', 'Programming', 'Computation', 'Simulation', 'Web'];
 
 function WorkshopList() {
+  // Tracks which category filter is active
   const [activeCategory, setActiveCategory] = useState('All');
+
+  // Tracks live search input value
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Filters workshops based on active category and search query
   const filtered = allWorkshops.filter((w) => {
     const matchCategory = activeCategory === 'All' || w.category === activeCategory;
     const matchSearch = w.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -84,6 +94,8 @@ function WorkshopList() {
     return matchCategory && matchSearch;
   });
 
+  // Returns color based on remaining seats
+  // Red = critical, Yellow = limited, Green = available
   const getSeatsColor = (booked, total) => {
     const remaining = total - booked;
     if (remaining <= 5) return '#DC2626';
@@ -91,6 +103,7 @@ function WorkshopList() {
     return '#16A34A';
   };
 
+  // Returns descriptive label with emoji for seat availability
   const getSeatsLabel = (booked, total) => {
     const remaining = total - booked;
     if (remaining <= 5) return `⚠️ Only ${remaining} left`;
@@ -100,6 +113,8 @@ function WorkshopList() {
 
   return (
     <main id="main-content">
+
+      {/* Page header with search bar */}
       <section className="wl-hero" aria-label="Workshops header">
         <div className="container">
           <h1 className="wl-title">All Workshops</h1>
@@ -107,6 +122,7 @@ function WorkshopList() {
             Browse and book free workshops happening across India.
           </p>
 
+          {/* Live search input - filters as user types */}
           <div className="wl-search-wrap">
             <span className="search-icon">🔍</span>
             <input
@@ -121,9 +137,11 @@ function WorkshopList() {
         </div>
       </section>
 
+      {/* Workshop listings with filters */}
       <section className="wl-body" aria-label="Workshop listings">
         <div className="container">
 
+          {/* Category filter buttons - acts as tab list for accessibility */}
           <div className="wl-filters" role="tablist" aria-label="Filter by category">
             {categories.map((cat) => (
               <button
@@ -138,15 +156,18 @@ function WorkshopList() {
             ))}
           </div>
 
+          {/* Shows count of filtered results */}
           <p className="wl-count">
             Showing <strong>{filtered.length}</strong> workshops
           </p>
 
+          {/* Empty state shown when no workshops match search/filter */}
           {filtered.length === 0 ? (
             <div className="wl-empty">
               <p>😕 No workshops found. Try a different search or category.</p>
             </div>
           ) : (
+            // Responsive grid of workshop cards
             <div className="wl-grid">
               {filtered.map((workshop) => (
                 <article className="wl-card" key={workshop.id}>
@@ -163,12 +184,14 @@ function WorkshopList() {
                   <h2 className="wl-card-title">{workshop.title}</h2>
                   <p className="wl-card-desc">{workshop.description}</p>
 
+                  {/* Workshop metadata - date, location, instructor */}
                   <div className="wl-card-meta">
                     <span>📅 {workshop.date}</span>
                     <span>📍 {workshop.location}</span>
                     <span>👨‍🏫 {workshop.instructor}</span>
                   </div>
 
+                  {/* Seat availability progress bar with ARIA attributes */}
                   <div className="wl-seats-track">
                     <div
                       className="wl-seats-fill"

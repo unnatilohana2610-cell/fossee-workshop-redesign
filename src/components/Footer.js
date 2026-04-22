@@ -1,3 +1,7 @@
+// Footer.js - Site footer with brand info, quick links and contact details
+// Uses semantic HTML footer tag with role="contentinfo" for accessibility
+// Responsive - single column on mobile, 4 columns on desktop
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
@@ -7,6 +11,7 @@ function Footer() {
     <footer className="footer" role="contentinfo">
       <div className="footer-inner container">
 
+        {/* Brand section - logo and about text */}
         <div className="footer-brand">
           <div className="footer-logo">
             <span className="brand-name">FOSSEE</span>
@@ -18,6 +23,7 @@ function Footer() {
           </p>
         </div>
 
+        {/* Quick links for internal navigation */}
         <div className="footer-links-group">
           <h3 className="footer-heading">Quick Links</h3>
           <ul className="footer-links">
@@ -28,6 +34,7 @@ function Footer() {
           </ul>
         </div>
 
+        {/* External resource links - open in new tab */}
         <div className="footer-links-group">
           <h3 className="footer-heading">Resources</h3>
           <ul className="footer-links">
@@ -49,6 +56,7 @@ function Footer() {
           </ul>
         </div>
 
+        {/* Contact information */}
         <div className="footer-links-group">
           <h3 className="footer-heading">Contact</h3>
           <ul className="footer-links">
@@ -60,6 +68,7 @@ function Footer() {
 
       </div>
 
+      {/* Copyright bar at bottom */}
       <div className="footer-bottom">
         <div className="container">
           <p>© 2025 FOSSEE, IIT Bombay. All rights reserved.</p>

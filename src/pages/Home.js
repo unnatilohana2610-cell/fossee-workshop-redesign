@@ -1,9 +1,14 @@
+// Home.js - Landing page of FOSSEE Workshop Portal
+// Sections: Hero, Features, Upcoming Workshops, Call to Action
+// Mobile-first design with responsive grid layouts
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
 
+  // Feature cards data - displayed in a responsive grid
   const features = [
     {
       icon: '🧪',
@@ -27,6 +32,7 @@ function Home() {
     }
   ];
 
+  // Upcoming workshop data - in real app this would come from an API
   const workshops = [
     {
       title: 'Python for Beginners',
@@ -51,6 +57,8 @@ function Home() {
     }
   ];
 
+  // Returns color based on remaining seats
+  // Red = almost full, Yellow = filling up, Green = plenty available
   const getSeatsColor = (booked, total) => {
     const remaining = total - booked;
     if (remaining <= 5) return '#DC2626';
@@ -58,6 +66,7 @@ function Home() {
     return '#16A34A';
   };
 
+  // Returns label text with emoji based on remaining seats
   const getSeatsLabel = (booked, total) => {
     const remaining = total - booked;
     if (remaining <= 5) return `⚠️ Only ${remaining} seats left!`;
@@ -68,9 +77,10 @@ function Home() {
   return (
     <main id="main-content">
 
-      {/* Hero Section */}
+      {/* Hero Section - first thing user sees, communicates site purpose */}
       <section className="hero" aria-label="Welcome section">
         <div className="hero-inner container">
+          {/* Badge showing free availability for Indian students */}
           <div className="hero-badge">🇮🇳 Free for all Indian Students</div>
           <h1 className="hero-title">
             Upgrade Your Skills With
@@ -80,6 +90,7 @@ function Home() {
             Join thousands of students across India in free, hands-on technical
             workshops conducted by IIT Bombay's FOSSEE team.
           </p>
+          {/* Two CTAs - primary and outline style */}
           <div className="hero-actions">
             <Link to="/workshops" className="btn-primary">
               Explore Workshops
@@ -88,6 +99,7 @@ function Home() {
               Book a Workshop
             </Link>
           </div>
+          {/* Impact statistics to build trust */}
           <div className="hero-stats">
             <div className="stat">
               <strong>500+</strong>
@@ -107,7 +119,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - explains value proposition */}
       <section className="features-section" aria-label="Why choose us">
         <div className="container">
           <div className="section-header">
@@ -116,6 +128,7 @@ function Home() {
               Built for students, delivered by experts, free for everyone.
             </p>
           </div>
+          {/* Responsive grid - 2 columns mobile, 4 columns desktop */}
           <div className="features-grid">
             {features.map((feature, index) => (
               <article className="feature-card" key={index}>
@@ -132,7 +145,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Upcoming Workshops */}
+      {/* Upcoming Workshops - shows live seat availability */}
       <section className="workshops-section" aria-label="Upcoming workshops">
         <div className="container">
           <div className="section-header">
@@ -141,6 +154,7 @@ function Home() {
               Seats fill up fast — book yours before it's too late.
             </p>
           </div>
+          {/* Workshop cards with color coded seat availability */}
           <div className="workshops-grid">
             {workshops.map((workshop, index) => (
               <article className="workshop-card" key={index}>
@@ -150,6 +164,7 @@ function Home() {
                 </div>
                 <h3 className="workshop-title">{workshop.title}</h3>
 
+                {/* Seat availability progress bar with ARIA for accessibility */}
                 <div className="seats-info">
                   <div className="seats-track">
                     <div
@@ -178,6 +193,7 @@ function Home() {
             ))}
           </div>
 
+          {/* Link to full workshops list */}
           <div className="view-all-wrap">
             <Link to="/workshops" className="view-all-link">
               View all workshops →
@@ -186,7 +202,7 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - encourages users to take action */}
       <section className="cta-section" aria-label="Call to action">
         <div className="container">
           <div className="cta-box">
